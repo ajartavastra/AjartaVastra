@@ -1,0 +1,72 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background: #fafafa;
+}
+
+.header {
+    background: #8b0000;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.banner {
+    position: relative;
+}
+
+.banner img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.banner-text {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    background: rgba(0,0,0,0.5);
+    padding: 15px;
+}
+
+.nav {
+    padding: 10px;
+    background: #333;
+}
+
+.nav button {
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    background: #8b0000;
+    border: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 100%;
+}
+
+.price {
+    color: green;
+    font-weight: bold;
+}
