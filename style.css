@@ -1,57 +1,172 @@
-body {
+#controls {
+    display: none;
+}
+
+#pagination {
+    display: none;
+}
+
+html, body {
     font-family: Arial;
     margin: 0;
     background: #fafafa;
+    padding:0;
+
+    height: 100%;
+    overflow-x: hidden; /* hides horizontal scrollbar */
+    overflow-y: auto; /* single vertical scroll */
+    box-sizing: border-box;
+    overflow-x: hidden;
+
 }
+/*
+.header {
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    height: 41px;
+    max:40px;
+    background: #8b0000f1;
+    color: white;
+    padding: 0;
+    padding-right: 5px;
+    position: fixed;
+    width:100%;
+    max-width: 100%;
+    margin: 0 auto;
+    z-index: 1000;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+}
+*/
 
 .header {
-    background: #8b0000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    background: #8b0000f1;
     color: white;
-    padding: 15px;
+    padding: 0 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 50;              /* ensures it aligns with viewport edges */
+    width: 100%;           /* matches body/footer width */
+    margin: 0 auto;
+    z-index: 1000;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Logo + brand grouped together */ 
+.brand {
     display: flex;
     align-items: center;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .logo {
-    height: 50px;
-    margin-right: 15px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+/* 🔍 Search box styling */
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+#searchBox {
+    width: 60%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+}
+
+.nav {
+    display: flex;
+    gap: 10px;
+    padding:0;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.nav button {
+    /* padding: 10px;*/
+    padding:0;
+    max-width: 100%;
+    margin: 5px;
+    color: white;
+    background: #8b0000;
+    border: none;
+    cursor:pointer;
+}
+
+/* Hover effect */
+.nav button:hover {
+    background: #b22222;   /* lighter/different red shade */
+    transform: scale(1.05); /* subtle zoom */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Active state */
+.nav button.active {
+    background: #333;   /* dark background for active */
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.midsection {
+    width:100%;
+    max-width: 100%;
+/*    top:51px;*/
+    position: relative;
+    background: #8b0000;
+    border-style: double;
+    left:0;
+    /*z-index: 1000;*/
+    box-sizing: border-box;
+    /*overflow-x: hidden;*/
+    overflow: visible;
+    height:auto;
 }
 
 .banner {
     position: relative;
+    box-sizing: border-box;
+    margin:0 auto;
+    height: 400px;
+    padding: top 40px;
 }
 
 .banner img {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
+    height: 100%;
+    /*object-fit: cover; */
+    object-fit:fill;
 }
 
 .banner-text {
     position: absolute;
     bottom: 30px;
-    left: 30px;
+    left: 500px;
     color: white;
     background: rgba(0,0,0,0.5);
     padding: 15px;
 }
 
-.nav {
-    padding: 10px;
-    background: #333;
-}
-
-.nav button {
-    padding: 10px;
-    margin: 5px;
-    color: white;
-    background: #8b0000;
-    border: none;
-}
-
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px;
 }
@@ -60,6 +175,50 @@ body {
     background: white;
     padding: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    cursor: pointer; /* pointer on hover */ 
+    transition: transform 0.2s ease-in-out;
+}
+
+.card h3 {
+    color:black;
+}
+.card p {
+    color:black;
+}
+
+.card:hover {
+    transform: scale(1.03); /* subtle zoom */
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    margin: 5% auto;
+    display: block;
+    max-width: 80%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .card img {
@@ -69,4 +228,232 @@ body {
 .price {
     color: green;
     font-weight: bold;
+}
+
+/* Pagination */
+#pagination {
+    text-align: center;
+    margin: 20px;
+}
+
+#pagination button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    background: #8b0000;
+    color: white;
+    cursor: pointer;
+}
+
+#pagination button.active {
+    background: #333;
+}
+
+/* Sort + Filter controls */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px;
+}
+
+.controls select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.about-section {
+    padding: 30px;
+}
+
+.about-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.about-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.about-text {
+    color:white;
+    flex: 1;
+    padding: 20px;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: 300px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+/* Footer Section */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #f5f0eb; /* lighter tone in same family */
+    color: #333;
+    padding: 30px;
+    font-size: 14px;
+    flex-wrap: wrap;
+    border-top: 1px solid #ccc;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-left ul li {
+    margin-bottom: 8px;
+}
+
+.footer-left ul li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-left ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-right p {
+    margin: 5px 0;
+}
+
+.footer h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #b22222;
+}
+/* End of Footer Section */
+/* Global text color */
+body {
+    color: #fff;
+    background-color: #222; /* dark background for contrast */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+}
+
+/* Paragraphs */
+p {
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    text-align: justify; /* or left, see below */
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: medium;
+}
+
+/* Links */
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #ddd; /* subtle hover effect */
+}
+
+/* Footer background slightly lighter */
+.footer {
+    background-color: #333; /* lighter than body */
+    color: #fff;
+}
+
+.footer-left ul li a {
+    color: #fff;              /* force white text */
+    text-decoration: none;    /* clean look */
+    transition: color 0.2s ease-in-out;
+}
+.page-section h2 {
+    padding-left:10px;
+}
+.page-section h3 {
+    padding-left:10px;
+}
+
+.gallery-title {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 20px 0 10px;
+    color: #fff;
+}
+
+.gallery-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.gallery-row img {
+    height: 150px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.gallery-row img:hover {
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.gallery-welcome {
+    font-weight: bold;
+    font-size: 2.5em;
+    text-align: center;   /* centers the text */
+    margin: 30px 0 20px;
+    color: #fff;          /* optional, matches your theme */
 }
