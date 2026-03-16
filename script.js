@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+  // Load products immediately when the site starts
+  loadProducts();
+});
+
 let products = [];
 let filteredProducts = [];
 let currentPage = 1;
@@ -11,6 +16,13 @@ async function loadProducts() {
   renderProducts();
   setupPagination();
   setupCategoryFilter(); // dynamically build filter options
+
+  // 👇 Apply search term AFTER products are loaded
+  const params = new URLSearchParams(window.location.search);
+  const searchTerm = params.get("search");
+  if (searchTerm) {
+    searchProducts(searchTerm);
+  }
 }
 
 function renderProducts() {
