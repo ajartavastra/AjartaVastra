@@ -15,9 +15,27 @@
 
     <div id="categoryMenu"></div>
 
-    <div id="catalogContainer" class="catalog-container"></div>
-
     <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // If products are already loaded, just render them
+            if (products.length > 0) {
+                renderProducts();
+                setupPagination();
+                setupCategoryFilter();
+            } else {
+                // Fallback: load if not yet available
+                loadProducts();
+            }
+
+            // Apply search term if present
+            const params = new URLSearchParams(window.location.search);
+            const searchTerm = params.get("search");
+            if (searchTerm) {
+                searchProducts(searchTerm);
+            }
+        });
+    </script>
 
 </body>
 
